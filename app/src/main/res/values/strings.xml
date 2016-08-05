@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Fluffy Shopping List</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Grocery List Strings -->
+    <string name="grocery_item_hint">Grocery Item</string>
+    <string name="grocery_unit_hint">Unit</string>
+    <string name="grocery_addbutton">Add</string>
 </resources>
