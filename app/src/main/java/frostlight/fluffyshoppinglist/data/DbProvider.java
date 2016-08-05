@@ -22,12 +22,8 @@ public class DbProvider extends ContentProvider {
     private DbHelper mDbHelper;
 
     // IDs for URI types
-    static final int CALENDAR = 1;
-    static final int TWITTER = 2;
-    static final int TRANSLATION = 3;
-
-    // Union of calendar and Twitter, only supports queries
-    static final int EMERGENCYQUEST = 10;
+    static final int SHOPPINGLIST = 1;
+    static final int GROCERY = 2;
 
     /**
      * Creates a UriMatcher for the content provider
@@ -35,14 +31,11 @@ public class DbProvider extends ContentProvider {
      */
     static UriMatcher uriMatcher() {
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        final String authority = KueContract.CONTENT_AUTHORITY;
+        final String authority = DbContract.CONTENT_AUTHORITY;
 
         // Add all URIs for content
-        uriMatcher.addURI(authority, KueContract.PATH_CALENDAR, CALENDAR);
-        uriMatcher.addURI(authority, KueContract.PATH_TWITTER, TWITTER);
-        uriMatcher.addURI(authority, KueContract.PATH_TRANSLATION, TRANSLATION);
-        uriMatcher.addURI(authority, KueContract.PATH_EMERGENCYQUEST, EMERGENCYQUEST);
-
+        uriMatcher.addURI(authority, DbContract.PATH_SHOPPINGLIST, SHOPPINGLIST);
+        uriMatcher.addURI(authority, DbContract.PATH_GROCERY, GROCERY);
         return uriMatcher;
     }
 
@@ -59,14 +52,10 @@ public class DbProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
 
         switch(match) {
-            case CALENDAR:
-                return KueContract.CalendarEntry.CONTENT_TYPE;
-            case TWITTER:
-                return KueContract.TwitterEntry.CONTENT_TYPE;
-            case TRANSLATION:
-                return KueContract.TranslationEntry.CONTENT_TYPE;
-            case EMERGENCYQUEST:
-                return KueContract.EmergencyQuest.CONTENT_TYPE;
+            case SHOPPINGLIST:
+                return DbContract.ShoppingListEntry.CONTENT_TYPE;
+            case GROCERY:
+                return DbContract.GroceryEntry.CONTENT_TYPE;
             default:
                 throw new UnsupportedOperationException("Error: Unknown URI " + uri);
         }
@@ -81,9 +70,9 @@ public class DbProvider extends ContentProvider {
         // Use the uriMatcher to match the URI's we are going to handle
         // If it doesn't match these, throw an UnsupportedOperationException
         switch(sUriMatcher.match(uri)) {
-            case CALENDAR:
+            case SHOPPINGLIST:
                 returnCursor = sqLiteDatabase.query(
-                        KueContract.CalendarEntry.TABLE_NAME,
+                        DbContract.ShoppingListEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -92,9 +81,9 @@ public class DbProvider extends ContentProvider {
                         sortOrder
                 );
                 break;
-            case TWITTER:
+            case GROCERY:
                 returnCursor = sqLiteDatabase.query(
-                        KueContract.TwitterEntry.TABLE_NAME,
+                        DbContract.GroceryEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -102,30 +91,6 @@ public class DbProvider extends ContentProvider {
                         null,
                         sortOrder
                 );
-                break;
-            case TRANSLATION:
-                returnCursor = sqLiteDatabase.query(
-                        KueContract.TranslationEntry.TABLE_NAME,
-                        projection,
-                        selection,
-                        selectionArgs,
-                        null,
-                        null,
-                        sortOrder
-                );
-                break;
-            case EMERGENCYQUEST:
-                // Union SELECT from both the calendar and Twitter tables
-                String subQueryCalendar = SQLiteQueryBuilder.buildQueryString(true,
-                        KueContract.CalendarEntry.TABLE_NAME, projection, selection, null, null,
-                        null, null);
-                String subQueryTwitter = SQLiteQueryBuilder.buildQueryString(true,
-                        KueContract.TwitterEntry.TABLE_NAME, projection, selection, null, null,
-                        null, null);
-                String[] queryArray = {subQueryCalendar, subQueryTwitter};
-
-                String unionQuery = new SQLiteQueryBuilder().buildUnionQuery(queryArray,
-                        sortOrder, null);                returnCursor = sqLiteDatabase.rawQuery(unionQuery, null);
                 break;
             default:
                 throw new UnsupportedOperationException("Error: Unknown URI " + uri);
@@ -152,40 +117,26 @@ public class DbProvider extends ContentProvider {
         int uriMatch = sUriMatcher.match(uri);
         switch(uriMatch)
         {
-            case CALENDAR:
-                _id = sqLiteDatabase.insert(KueContract.CalendarEntry.TABLE_NAME, null, values);
+            case SHOPPINGLIST:
+                _id = sqLiteDatabase.insert(DbContract.ShoppingListEntry.TABLE_NAME, null, values);
                 if (_id > 0)
-                    returnUri = KueContract.CalendarEntry.buildCalendarUri(_id);
+                    returnUri = DbContract.ShoppingListEntry.buildShoppingListUri(_id);
                 else
                     throw new android.database.SQLException("Error: Failed to insert row into " + uri);
                 break;
-            case TWITTER:
-                _id = sqLiteDatabase.insert(KueContract.TwitterEntry.TABLE_NAME, null, values);
+            case GROCERY:
+                _id = sqLiteDatabase.insert(DbContract.GroceryEntry.TABLE_NAME, null, values);
                 if (_id > 0)
-                    returnUri = KueContract.TwitterEntry.buildTwitterUri(_id);
+                    returnUri = DbContract.GroceryEntry.buildGroceryId(_id);
                 else
                     throw new android.database.SQLException("Error: Failed to insert row into " + uri);
                 break;
-            case TRANSLATION:
-                _id = sqLiteDatabase.insert(KueContract.TranslationEntry.TABLE_NAME, null, values);
-                if (_id > 0)
-                    returnUri = KueContract.TranslationEntry.buildTranslationUri(_id);
-                else
-                    throw new android.database.SQLException("Error: Failed to insert row into " + uri);
-                break;
-            case EMERGENCYQUEST:
-                throw new UnsupportedOperationException("Error: Insert is not support for URI " + uri);
             default:
                 throw new UnsupportedOperationException("Error: Unknown URI " + uri);
         }
 
         // Notify the content observers
         getContext().getContentResolver().notifyChange(uri, null);
-
-        // Also notify observers on the EMERGENCYQUEST Uri if the insertion was into
-        // one of the unioned tables
-        if (uriMatch == CALENDAR || uriMatch == TWITTER)
-            getContext().getContentResolver().notifyChange(KueContract.EmergencyQuest.CONTENT_URI, null);
 
         // Return the Uri of the entry that was just inserted
         return returnUri;
@@ -202,20 +153,14 @@ public class DbProvider extends ContentProvider {
         int uriMatch = sUriMatcher.match(uri);
         switch(uriMatch)
         {
-            case CALENDAR:
-                deleteCount = sqLiteDatabase.delete(KueContract.CalendarEntry.TABLE_NAME, selection,
+            case SHOPPINGLIST:
+                deleteCount = sqLiteDatabase.delete(DbContract.ShoppingListEntry.TABLE_NAME, selection,
                         selectionArgs);
                 break;
-            case TWITTER:
-                deleteCount = sqLiteDatabase.delete(KueContract.TwitterEntry.TABLE_NAME, selection,
+            case GROCERY:
+                deleteCount = sqLiteDatabase.delete(DbContract.GroceryEntry.TABLE_NAME, selection,
                         selectionArgs);
                 break;
-            case TRANSLATION:
-                deleteCount = sqLiteDatabase.delete(KueContract.TranslationEntry.TABLE_NAME, selection,
-                        selectionArgs);
-                break;
-            case EMERGENCYQUEST:
-                throw new UnsupportedOperationException("Error: Insert is not support for URI " + uri);
             default:
                 throw new UnsupportedOperationException("Error: Unknown URI " + uri);
         }
@@ -239,20 +184,14 @@ public class DbProvider extends ContentProvider {
         int uriMatch = sUriMatcher.match(uri);
         switch(uriMatch)
         {
-            case CALENDAR:
-                updateCount = sqLiteDatabase.update(KueContract.CalendarEntry.TABLE_NAME, values,
+            case SHOPPINGLIST:
+                updateCount = sqLiteDatabase.update(DbContract.ShoppingListEntry.TABLE_NAME, values,
                         selection, selectionArgs);
                 break;
-            case TWITTER:
-                updateCount = sqLiteDatabase.update(KueContract.TwitterEntry.TABLE_NAME, values,
+            case GROCERY:
+                updateCount = sqLiteDatabase.update(DbContract.GroceryEntry.TABLE_NAME, values,
                         selection, selectionArgs);
                 break;
-            case TRANSLATION:
-                updateCount = sqLiteDatabase.update(KueContract.TranslationEntry.TABLE_NAME, values,
-                        selection, selectionArgs);
-                break;
-            case EMERGENCYQUEST:
-                throw new UnsupportedOperationException("Error: Insert is not support for URI " + uri);
             default:
                 throw new UnsupportedOperationException("Error: Unknown URI " + uri);
         }

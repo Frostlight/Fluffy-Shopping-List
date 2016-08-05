@@ -32,12 +32,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 ShoppingListEntry.COLUMN_DATE + " INTEGER NOT NULL );";
         sqLiteDatabase.execSQL(SQL_CREATE_SHOPPINGLIST_TABLE);
 
-        final String SQL_CREATE_TWITTER_TABLE = "CREATE TABLE " + GroceryEntry.TABLE_NAME + " (" +
+        final String SQL_CREATE_GROCERY_TABLE = "CREATE TABLE " + GroceryEntry.TABLE_NAME + " (" +
                 GroceryEntry._ID + " INTEGER PRIMARY KEY," +
                 "FOREIGN KEY(" + GroceryEntry.COLUMN_SHOPPINGLISTID + " REFERENCES shoppinglist(id)," +
                 GroceryEntry.COLUMN_NAME + " TEXT NOT NULL," +
                 GroceryEntry.COLUMN_QUANTITY + " INTEGER NOT NULL );";
-        sqLiteDatabase.execSQL(SQL_CREATE_TWITTER_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_GROCERY_TABLE);
     }
 
     @Override
