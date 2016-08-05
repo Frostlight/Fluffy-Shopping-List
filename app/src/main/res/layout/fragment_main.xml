@@ -40,6 +40,9 @@
     <EditText
         android:layout_width="75dp"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="start"
+        android:gravity="center_horizontal"
         android:id="@+id/editText2"
         android:layout_above="@+id/listView"
         android:layout_toLeftOf="@+id/button"
