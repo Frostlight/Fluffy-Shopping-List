@@ -13,29 +13,31 @@ import android.provider.BaseColumns;
 public class DbContract {
 
     // Content authority is the name of the package of the app
-    public static final String CONTENT_AUTHORITY = "frostlight.pso2kue";
+    public static final String CONTENT_AUTHORITY = "frostlight.fluffyshoppinglist";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     // Possible Paths
-    public static final String PATH_CALENDAR = "calendar";
+    public static final String PATH_SHOPPINGLIST = "shoppinglist";
+
+    // TODO: Update
     public static final String PATH_TWITTER = "twitter";
     public static final String PATH_TRANSLATION = "translation";
     public static final String PATH_EMERGENCYQUEST = "emergencyquest";
 
     /**
-     * Inner class that defines the table contents of the calendar table
-     * The calendar table stores the emergency quest schedule obtained from Google calendar
-     * Table: ID | EQ Name | Date/Time
+     * Inner class that defines the table contents of the shopping list table
+     * The calendar table stores the names and dates created of each saved shopping list
+     * Table: ID | Shopping List Name | Date/Time
      */
-    public static final class CalendarEntry implements BaseColumns {
+    public static final class ShoppingListEntry implements BaseColumns {
         /** ----------------  Uri definitions and functions ---------------- */
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_CALENDAR).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_SHOPPINGLIST).build();
         public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CALENDAR;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOPPINGLIST;
 
         /**
-         * Builds a Uri for the CalendarEntry table with a specified ID
+         * Builds a Uri for the ShoppingListEntry table with a specified ID
          *
          * @param id ID of Uri to build
          * @return Resultant Uri
@@ -45,14 +47,16 @@ public class DbContract {
         }
 
         /** ------------------------  Table Details ------------------------ */
-        public static final String TABLE_NAME = "calendar";
+        public static final String TABLE_NAME = "shoppinglist";
 
         // The name of the emergency quest
-        public static final String COLUMN_EQNAME = "eq_name";
+        public static final String COLUMN_LISTNAME = "list_name";
 
         // The time the emergency quest occurs
         public static final String COLUMN_DATE = "date";
     }
+
+    // TODO: Update below
 
     /**
      * Inner class that defines the table contents of the Twitter table
