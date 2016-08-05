@@ -18,11 +18,7 @@ public class DbContract {
 
     // Possible Paths
     public static final String PATH_SHOPPINGLIST = "shoppinglist";
-
-    // TODO: Update
-    public static final String PATH_TWITTER = "twitter";
-    public static final String PATH_TRANSLATION = "translation";
-    public static final String PATH_EMERGENCYQUEST = "emergencyquest";
+    public static final String PATH_GROCERY = "grocery";
 
     /**
      * Inner class that defines the table contents of the shopping list table
@@ -42,94 +38,51 @@ public class DbContract {
          * @param id ID of Uri to build
          * @return Resultant Uri
          */
-        public static Uri buildCalendarUri(long id) {
+        public static Uri buildShoppingListUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
         /** ------------------------  Table Details ------------------------ */
         public static final String TABLE_NAME = "shoppinglist";
 
-        // The name of the emergency quest
+        // The name of the shopping list
         public static final String COLUMN_LISTNAME = "list_name";
 
-        // The time the emergency quest occurs
+        // The date the shopping list was created
         public static final String COLUMN_DATE = "date";
     }
 
-    // TODO: Update below
-
     /**
-     * Inner class that defines the table contents of the Twitter table
-     * The twitter table stores emergency quest alert tweets obtained from Twitter bots
-     * Table: ID | EQ Name | Date/Time
+     * Inner class that defines the table contents of the Grocery table
+     * The Grocery table stores grocery list entries
+     * Table: ID | Shopping List ID (foreign key constraint) | Grocery Name | Grocery Quantity
      */
-    public static final class TwitterEntry implements BaseColumns {
+    public static final class GroceryEntry implements BaseColumns {
         /** ----------------  Uri definitions and functions ---------------- */
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TWITTER).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_GROCERY).build();
         public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TWITTER;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GROCERY;
 
         /**
-         * Builds a Uri for the TwitterEntry table with a specified ID
+         * Builds a Uri for the GroceryEntry table with a specified ID
          *
          * @param id ID of Uri to build
          * @return Resultant Uri
          */
-        public static Uri buildTwitterUri(long id) {
+        public static Uri buildGroceryId(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static final String TABLE_NAME = "twitter";
+        public static final String TABLE_NAME = "grocery";
 
-        // Columns should be the same as in CalendarEntry
-        // The name of the emergency quest
-        public static final String COLUMN_EQNAME = CalendarEntry.COLUMN_EQNAME;
+        // The ID of the grocery list
+        public static final String COLUMN_SHOPPINGLISTID = GroceryEntry.COLUMN_SHOPPINGLISTID;
 
-        // The time the emergency quest occurs
-        public static final String COLUMN_DATE = CalendarEntry.COLUMN_DATE;
-    }
+        // The name of the grocery entry
+        public static final String COLUMN_NAME = GroceryEntry.COLUMN_NAME;
 
-    /**
-     * Inner class that defines the table contents of the translation table
-     * The translation table stores the japanese/english pairs for the emergency quest names
-     * Table: ID | Japanese Name | English Name
-     */
-    public static final class TranslationEntry implements BaseColumns {
-        /** ----------------  Uri definitions and functions ---------------- */
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TRANSLATION).build();
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TRANSLATION;
-
-        /**
-         * Builds a Uri for the TranslationEntry table with a specified ID
-         *
-         * @param id ID of Uri to build
-         * @return Resultant Uri
-         */
-        public static Uri buildTranslationUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-
-        public static final String TABLE_NAME = "translation";
-
-        // The name of the emergency quest in Japanese
-        public static final String COLUMN_JAPANESE = "japanese";
-
-        // The corresponding english translation
-        public static final String COLUMN_ENGLISH = "english";
-    }
-
-    /**
-     * Inner class that contains the union of the calendar table and Twitter table
-     * Table: ID | Japanese Name | English Name
-     */
-    public static final class EmergencyQuest {
-        /** ----------------  Uri definitions and functions ---------------- */
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_EMERGENCYQUEST).build();
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_EMERGENCYQUEST;
+        // The quantity of the grocery entry
+        public static final String COLUMN_QUANTITY = GroceryEntry.COLUMN_QUANTITY;
     }
 }
