@@ -74,6 +74,7 @@ public class DbContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
+        /** ------------------------  Table Details ------------------------ */
         public static final String TABLE_NAME = "grocery";
 
         // The ID of the grocery list
