@@ -9,43 +9,44 @@
     tools:context="frostlight.fluffyshoppinglist.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
+    <!-- Insert grocery elements -->
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/groceryItemEdit"
         android:hint="@string/grocery_item_hint"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/editText2"
-        android:layout_toStartOf="@+id/editText2" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/grocery_addbutton"
-        android:id="@+id/button"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText" />
-
+        android:layout_toStartOf="@+id/groceryUnitEdit"
+        android:layout_toLeftOf="@+id/groceryUnitEdit" />
     <EditText
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:ellipsize="start"
         android:gravity="center_horizontal"
-        android:id="@+id/editText2"
-        android:layout_above="@+id/listView"
-        android:layout_toLeftOf="@+id/button"
+        android:id="@+id/groceryUnitEdit"
+        android:layout_above="@+id/groceryListView"
+        android:layout_toLeftOf="@+id/groceryAddButton"
+        android:layout_toStartOf="@+id/groceryAddButton"
         android:hint="@string/grocery_unit_hint" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grocery_addbutton"
+        android:id="@+id/groceryAddButton"
+        android:layout_alignBottom="@+id/groceryItemEdit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- Grocery list -->
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/groceryListView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/groceryItemEdit" />
 
 </RelativeLayout>
