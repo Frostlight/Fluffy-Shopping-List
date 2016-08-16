@@ -6,4 +6,8 @@
     <string name="grocery_item_hint">Grocery Item</string>
     <string name="grocery_unit_hint">Unit</string>
     <string name="grocery_addbutton">Add</string>
+
+    <!-- List placeholder strings (non translatable) -->
+    <string name="default_grocery_name" translatable="false">Long Grocery Item Example</string>
+    <string name="default_grocery_units" translatable="false">5 lbs</string>
 </resources>

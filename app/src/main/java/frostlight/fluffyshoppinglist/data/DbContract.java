@@ -78,12 +78,12 @@ public class DbContract {
         public static final String TABLE_NAME = "grocery";
 
         // The ID of the grocery list
-        public static final String COLUMN_SHOPPINGLISTID = GroceryEntry.COLUMN_SHOPPINGLISTID;
+        public static final String COLUMN_SHOPPINGLISTID = "shopping_list_id";
 
         // The name of the grocery entry
-        public static final String COLUMN_NAME = GroceryEntry.COLUMN_NAME;
+        public static final String COLUMN_NAME = "name";
 
         // The quantity of the grocery entry
-        public static final String COLUMN_QUANTITY = GroceryEntry.COLUMN_QUANTITY;
+        public static final String COLUMN_QUANTITY = "quantity";
     }
 }

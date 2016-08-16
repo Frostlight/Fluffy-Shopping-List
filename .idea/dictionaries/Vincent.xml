@@ -5,6 +5,7 @@
       <w>listname</w>
       <w>shoppinglist</w>
       <w>shoppinglistid</w>
+      <w>textview</w>
     </words>
   </dictionary>
 </component>

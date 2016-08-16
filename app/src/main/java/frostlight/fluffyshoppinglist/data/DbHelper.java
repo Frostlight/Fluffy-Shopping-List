@@ -25,6 +25,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        // Enable foreign key constraints
+        sqLiteDatabase.execSQL("PRAGMA foreign_keys = ON;");
+
         // Create each table with columns as specified in DbContract
         final String SQL_CREATE_SHOPPINGLIST_TABLE = "CREATE TABLE " + ShoppingListEntry.TABLE_NAME + " (" +
                 ShoppingListEntry._ID + " INTEGER PRIMARY KEY," +
@@ -34,9 +37,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_GROCERY_TABLE = "CREATE TABLE " + GroceryEntry.TABLE_NAME + " (" +
                 GroceryEntry._ID + " INTEGER PRIMARY KEY," +
-                "FOREIGN KEY(" + GroceryEntry.COLUMN_SHOPPINGLISTID + " REFERENCES shoppinglist(id)," +
+                GroceryEntry.COLUMN_SHOPPINGLISTID + " INTEGER NOT NULL," +
                 GroceryEntry.COLUMN_NAME + " TEXT NOT NULL," +
-                GroceryEntry.COLUMN_QUANTITY + " INTEGER NOT NULL );";
+                GroceryEntry.COLUMN_QUANTITY + " INTEGER NOT NULL," +
+                "FOREIGN KEY(" + GroceryEntry.COLUMN_SHOPPINGLISTID + ") REFERENCES shoppinglist(id) );";
         sqLiteDatabase.execSQL(SQL_CREATE_GROCERY_TABLE);
     }
 
