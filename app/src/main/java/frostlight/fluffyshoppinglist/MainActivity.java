@@ -1,6 +1,7 @@
 package frostlight.fluffyshoppinglist;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import frostlight.fluffyshoppinglist.data.DbContract;
 
 public class MainActivity extends AppCompatActivity {
+    Context mContext;           // Context of the application
     Button mAddButton;          // Button to add groceries with
     EditText mGroceryItemEdit;  // Name of the grocery
     EditText mGroceryUnitEdit;  // Unit of the grocery (optional)
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         mAddButton = (Button)findViewById(R.id.groceryAddButton);
         mGroceryItemEdit = (EditText)findViewById(R.id.groceryItemEdit);
         mGroceryUnitEdit = (EditText)findViewById(R.id.groceryUnitEdit);
+
+        // Set global context variable
+        mContext = getApplicationContext();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -49,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(DbContract.GroceryEntry.COLUMN_NAME, mGroceryItemEdit.getText().toString());
                 contentValues.put(DbContract.GroceryEntry.COLUMN_QUANTITY, mGroceryUnitEdit.getText().toString());
-
                 // Placeholder ID
                 contentValues.put(DbContract.GroceryEntry.COLUMN_SHOPPINGLISTID, "0");
+
+                // Insert into database
+                mContext.getContentResolver().insert(DbContract.GroceryEntry.CONTENT_URI, contentValues);
             }
         });
     }
