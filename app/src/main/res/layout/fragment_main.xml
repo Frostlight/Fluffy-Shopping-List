@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/groceryItemEdit"
         android:hint="@string/grocery_item_hint"
+        android:inputType="textCapSentences"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -27,10 +28,10 @@
         android:ellipsize="start"
         android:gravity="center_horizontal"
         android:id="@+id/groceryUnitEdit"
+        android:hint="@string/grocery_unit_hint"
         android:layout_above="@+id/groceryListView"
         android:layout_toLeftOf="@+id/groceryAddButton"
-        android:layout_toStartOf="@+id/groceryAddButton"
-        android:hint="@string/grocery_unit_hint" />
+        android:layout_toStartOf="@+id/groceryAddButton" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

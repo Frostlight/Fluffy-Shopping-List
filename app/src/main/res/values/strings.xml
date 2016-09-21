@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Fluffy Shopping List</string>
+
+    <!-- Menu -->
+    <string name="action_clear">Clear</string>
     <string name="action_settings">Settings</string>
 
     <!-- Grocery List Strings -->

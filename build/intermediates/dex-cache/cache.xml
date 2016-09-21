@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_936f06b7692c52d67578d7fbd20e99569a8b30ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_03707b20e733dfcf7c2545bacdd3e3a278539c2f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_fee77b68a7dd60bb9e5ee8d6409b799f70cb59e7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_52091e8e4460163cd2aa3afce30d85b5bcdc6092/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_98d132e3594bf59c8f55e3099100fcf549803b26/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_090679262c3a1004190ebabe3d89315b9a63f000/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_389f9a0a151db6ae0e53a1b880127ead30c83e92/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="91a91feabeb7d425d4a863cc943b622f18260ee8">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6232fef86c424057c242a4f66fdb580d5a9eeef9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_d450aa5568067d019296f05c81522d461e5cc524/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d45aeaa18f7c88db43c719b64d6de27d6ce8ee4b">
+        <dex dex="/Users/Vincent/Documents/Github/Fluffy-Shopping-List/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a7d489d1a9711b9b9b32ed69d203f8124d0ba6a4/classes.dex" />
+    </item>
+
+</items>
