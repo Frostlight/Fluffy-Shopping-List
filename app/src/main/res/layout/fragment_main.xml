@@ -48,6 +48,8 @@
         android:id="@+id/groceryListView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/groceryItemEdit" />
+        android:layout_below="@+id/groceryItemEdit"
+        android:divider="@color/colorDivider"
+        android:dividerHeight="1dp"/>
 
 </RelativeLayout>
